@@ -1,0 +1,146 @@
+/*!
+Theme Name: Basic Starter Dev RTL
+Description: RTL stylesheet for the Basic Starter Dev theme.
+*/
+
+body {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* Text alignment */
+.main-navigation,
+.site-footer,
+.page-header,
+.entry-title,
+.page-title,
+.search-results,
+.error-404,
+.no-results {
+  text-align: right;
+}
+
+/* Header inner layout */
+.header-inner {
+  flex-direction: row-reverse;
+}
+
+/* Branding and logo alignment */
+.site-branding {
+  flex-direction: row-reverse;
+}
+
+.site-branding .site-title {
+  text-align: right;
+}
+
+/* Navigation */
+.main-navigation ul {
+  justify-content: flex-start;
+}
+
+.main-navigation a {
+  text-align: right;
+}
+
+/* Entry Footer */
+.entry-footer {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+/* Pagination */
+.pagination-wrap .nav-links a,
+.pagination-wrap .nav-links span {
+  margin: 0 0.25rem 0 0;
+}
+
+/* Post navigation */
+.post-navigation {
+  flex-direction: row-reverse;
+}
+
+.post-navigation .nav-previous,
+.post-navigation .nav-next {
+  text-align: right;
+}
+
+/* Comments */
+.comment-author,
+.comment-content,
+.comment-meta,
+.comment-reply-link {
+  text-align: right;
+}
+
+/* Comment form */
+.comment-form label {
+  text-align: right;
+}
+
+/* Widgets */
+.widget h2,
+.widget .wp-block-heading {
+  text-align: right;
+}
+
+/* Search form RTL fix */
+.wp-block-search__inside-wrapper {
+  flex-direction: row-reverse;
+}
+
+.wp-block-search__input {
+  border-radius: 0 4px 4px 0;
+}
+
+.wp-block-search__button {
+  border-radius: 4px 0 0 4px;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+/* Widget Lists */
+.wp-block-latest-posts__list,
+.wp-block-archives,
+.wp-block-categories,
+.comment-list {
+  text-align: right;
+}
+
+/* No Results and 404 Pages */
+.no-results .search-form,
+.error-404 .search-form {
+  flex-direction: row-reverse;
+}
+
+/* RTL Search Inputs */
+.no-results .search-form input[type="search"],
+.error-404 .search-form input[type="search"] {
+  border-radius: 0 4px 4px 0;
+}
+
+.no-results .search-form input[type="submit"],
+.error-404 .search-form input[type="submit"] {
+  border-radius: 4px 0 0 4px;
+}
+
+/* Sidebar */
+.widget-area {
+  text-align: right;
+}
+
+/* Archive posts layout */
+.archive-posts {
+  direction: rtl;
+}
+
+/* Fix for back-to-top button on RTL */
+.back-to-top {
+  right: auto;
+  left: 20px;
+}
