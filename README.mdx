@@ -1,0 +1,383 @@
+# 📝 WordPress Blog
+
+> A modern WordPress installation with full-site editing capabilities, block patterns, and style variations.
+
+## 🌟 Overview
+
+This is a complete WordPress blog setup that leverages the latest WordPress features including the Full Site Editor (FSE), block-based themes, and extensive customization options. The project includes themes with multiple style variations, custom patterns, and comprehensive template parts.
+
+## ✨ Key Features
+
+- **Full Site Editing (FSE)** - Complete control over your site's appearance using the block editor
+- **Style Variations** - 8+ style variations per theme for instant design changes
+- **Block Patterns** - 50+ pre-designed patterns for banners, CTAs, events, and more
+- **Responsive Design** - Mobile-first approach with fluid typography and spacing
+- **Custom Fonts** - Includes DM Sans, IBM Plex Mono, Inter, Source Serif Pro, and more
+- **Accessibility Ready** - WCAG compliant with proper ARIA labels and semantic HTML
+- **RTL Language Support** - Full right-to-left language support
+- **Custom Block Styles** - Enhanced block styling options for lists, quotes, and navigation
+
+## 📋 System Requirements
+
+### Minimum Requirements
+- **PHP**: 7.2.24 or greater
+- **MySQL**: 5.5.5 or greater
+- **Web Server**: Apache or Nginx
+
+### Recommended
+- **PHP**: 8.3 or greater
+- **MySQL**: 8.0 or greater (or MariaDB 10.6+)
+- **Apache mod_rewrite** module enabled
+- **HTTPS** support
+
+## 🚀 Quick Start
+
+### Installation
+
+1. **Clone or download the repository**
+   ```bash
+   git clone <repository-url> WP-blog
+   cd WP-blog
+   ```
+
+2. **Set up your database**
+   - Create a MySQL database for WordPress
+   - Note your database credentials
+
+3. **Configure WordPress**
+   ```bash
+   cp wordpress/wp-config-sample.php wordpress/wp-config.php
+   ```
+   
+   Edit `wp-config.php` with your database details:
+   ```php
+   define('DB_NAME', 'your_database_name');
+   define('DB_USER', 'your_database_user');
+   define('DB_PASSWORD', 'your_database_password');
+   define('DB_HOST', 'localhost');
+   ```
+
+4. **Run the installation**
+   - Navigate to `http://your-domain.com/wordpress/wp-admin/install.php`
+   - Follow the 5-minute installation wizard
+   - Set your site title, admin username, and password
+
+5. **Activate a theme**
+   - Go to Appearance → Themes
+   - Choose from Twenty Twenty-Three, Twenty Twenty-Four, or Twenty Twenty-Five
+   - Click "Activate"
+
+## 📁 Project Structure
+
+```
+WP-blog/
+├── wordpress/
+│   ├── wp-admin/              # WordPress admin dashboard
+│   ├── wp-content/
+│   │   └── themes/
+│   │       ├── index.php      # Theme directory protection
+│   │       ├── twentytwentythree/
+│   │       │   ├── style.css
+│   │       │   ├── theme.json
+│   │       │   ├── functions.php
+│   │       │   ├── patterns/   # Block patterns
+│   │       │   ├── parts/      # Template parts
+│   │       │   ├── styles/     # Style variations
+│   │       │   └── templates/  # Page templates
+│   │       ├── twentytwentyfour/
+│   │       │   ├── style.css
+│   │       │   ├── theme.json
+│   │       │   ├── functions.php
+│   │       │   └── assets/
+│   │       └── twentytwentyfive/
+│   │           ├── style.css
+│   │           ├── style.min.css
+│   │           ├── theme.json
+│   │           ├── functions.php
+│   │           ├── package.json
+│   │           ├── patterns/   # 50+ block patterns
+│   │           ├── parts/      # Header, footer, sidebar
+│   │           ├── styles/     # 8 style variations
+│   │           └── templates/  # Page templates
+│   ├── wp-includes/           # WordPress core files
+│   ├── wp-config.php          # Configuration file
+│   └── readme.html            # WordPress readme
+└── README.mdx                 # This file
+```
+
+## 🎨 Available Themes
+
+### Twenty Twenty-Five (Latest)
+**Version**: 1.4  
+**Requires**: WordPress 6.7+, PHP 7.2+
+
+The newest default theme emphasizing simplicity and adaptability with:
+- 8 style variations (Evening, Noon, Dusk, Afternoon, Twilight, Morning, Sunrise, Midnight)
+- Variable fonts (Manrope, Fira Code, Literata, Platypi, etc.)
+- 50+ block patterns for various page types
+- Custom block bindings for post formats
+- NPM build tools for CSS minification
+
+**Key Features**:
+- Flexible design options
+- International typography support
+- Diverse color palettes
+- Service and landing page patterns
+
+### Twenty Twenty-Four
+**Version**: 1.4  
+**Requires**: WordPress 6.4+, PHP 7.0+
+
+Versatile theme with:
+- Multiple duotone filters
+- 12 gradient presets
+- Custom block styles (checkmark lists, arrow links, asterisk headings)
+- Full page layouts for business, blog, and portfolio sites
+
+### Twenty Twenty-Three
+**Version**: 1.6  
+**Requires**: WordPress 6.1+, PHP 5.6+
+
+Clean, blank base theme with:
+- 10 diverse style variations
+- Custom fonts (DM Sans, IBM Plex Mono, Inter, Source Serif Pro)
+- Fluid typography system
+- Extensive spacing controls
+
+## 🎯 Usage Examples
+
+### Creating a Custom Page with Patterns
+
+1. **Create a new page**
+   - Go to Pages → Add New
+   - Click the "+" button to add blocks
+
+2. **Insert a pattern**
+   - Click "Patterns" tab
+   - Browse categories: Banner, Call-to-Action, Contact, Events
+   - Click a pattern to insert it
+
+3. **Customize the content**
+   - Edit text, images, and colors directly
+   - Use the block toolbar for styling options
+
+### Switching Style Variations
+
+```
+1. Go to Appearance → Editor
+2. Click "Styles" in the top-right
+3. Browse available style variations
+4. Click to preview and activate
+```
+
+### Building Custom Templates
+
+The themes use `theme.json` for configuration:
+
+```json
+{
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "color": "#FFFFFF",
+          "name": "Base",
+          "slug": "base"
+        }
+      ]
+    },
+    "typography": {
+      "fontSizes": [
+        {
+          "size": "1rem",
+          "slug": "medium"
+        }
+      ]
+    }
+  }
+}
+```
+
+## 🔧 Development
+
+### Twenty Twenty-Five Development
+
+The theme includes build tools for CSS optimization:
+
+```bash
+cd wordpress/wp-content/themes/twentytwentyfive
+
+# Install dependencies
+npm install
+
+# Build minified CSS
+npm run build
+
+# Watch for changes
+npm run watch
+```
+
+### Custom Block Styles
+
+Register custom block styles in `functions.php`:
+
+```php
+register_block_style(
+    'core/list',
+    array(
+        'name'         => 'checkmark-list',
+        'label'        => __( 'Checkmark', 'twentytwentyfive' ),
+        'inline_style' => '
+            ul.is-style-checkmark-list {
+                list-style-type: "\2713";
+            }
+        ',
+    )
+);
+```
+
+### Custom Pattern Categories
+
+```php
+register_block_pattern_category(
+    'custom_category',
+    array(
+        'label'       => __( 'Custom Category', 'textdomain' ),
+        'description' => __( 'Custom patterns', 'textdomain' ),
+    )
+);
+```
+
+## 📦 Available Block Patterns
+
+### Twenty Twenty-Five Patterns
+
+| Category | Patterns | Description |
+|----------|----------|-------------|
+| **Banner** | 6 patterns | Hero sections, intro banners, cover images |
+| **Call-to-Action** | 8 patterns | Newsletter signups, event lists, product grids |
+| **Contact** | 3 patterns | Contact forms, location info, social links |
+| **Events** | 3 patterns | Event schedules, RSVP forms, 3-column layouts |
+| **Footer** | 4 patterns | Centered, columns, newsletter, social |
+| **Header** | 3 patterns | Default, large title, vertical |
+
+### Pattern Usage
+
+```php
+<!-- wp:pattern {"slug":"twentytwentyfive/banner-intro"} /-->
+```
+
+## 🎨 Style Variations
+
+### Twenty Twenty-Five Styles
+
+1. **Evening** - Dark theme with yellow and purple accents
+2. **Noon** - Warm tones with Beiruti and Literata fonts
+3. **Dusk** - Purple and green color scheme
+4. **Afternoon** - Nature-inspired green palette
+5. **Twilight** - Dark with blue and orange highlights
+6. **Morning** - Soft blues and purples
+7. **Sunrise** - Warm sunrise colors
+8. **Midnight** - Deep purple with neon green
+
+## 🔌 Extending WordPress
+
+### Plugin Development
+
+WordPress has a robust plugin API. Create custom functionality without modifying core:
+
+```php
+<?php
+/**
+ * Plugin Name: My Custom Plugin
+ * Description: Custom functionality
+ * Version: 1.0
+ */
+
+add_action('init', 'my_custom_function');
+
+function my_custom_function() {
+    // Your code here
+}
+```
+
+### Theme Customization
+
+Use child themes to customize without losing updates:
+
+```css
+/*
+Theme Name: Twenty Twenty-Five Child
+Template: twentytwentyfive
+*/
+
+/* Your custom styles */
+```
+
+## 🤝 Contributing
+
+WordPress is open source and welcomes contributions:
+
+1. **Report bugs** - Use the [WordPress Support Forums](https://wordpress.org/support/forums/)
+2. **Suggest features** - Join discussions on [WordPress.org](https://wordpress.org)
+3. **Submit patches** - Follow the [Plugin Developer Handbook](https://developer.wordpress.org/plugins/)
+4. **Translate** - Help translate WordPress into your language
+
+### Development Guidelines
+
+- Never modify core WordPress files
+- Use hooks and filters for customization
+- Follow WordPress coding standards
+- Test across multiple browsers and devices
+- Ensure accessibility compliance
+
+## 📚 Resources
+
+- **[WordPress Documentation](https://wordpress.org/documentation/)** - Complete WordPress guide
+- **[Theme Handbook](https://developer.wordpress.org/themes/)** - Theme development guide
+- **[Block Editor Handbook](https://developer.wordpress.org/block-editor/)** - Block development
+- **[Support Forums](https://wordpress.org/support/forums/)** - Community support
+- **[WordPress News](https://wordpress.org/news/)** - Latest updates
+
+## 🔒 Security
+
+- Keep WordPress core, themes, and plugins updated
+- Use strong passwords and 2FA
+- Regular backups recommended
+- Use HTTPS for all connections
+- Limit login attempts
+- Keep `wp-config.php` secure
+
+## 📄 License
+
+WordPress is free software released under the **GPL v2 or later**.
+
+- **WordPress Core**: GPL v2+
+- **Twenty Twenty-Three**: GPL v2+ (Copyright 2022-2025 WordPress.org)
+- **Twenty Twenty-Four**: GPL v2+ (Copyright 2023-2025 WordPress.org)
+- **Twenty Twenty-Five**: GPL v2+ (Copyright 2024-2025 WordPress.org)
+
+### Bundled Resources
+
+All themes include third-party fonts under the SIL Open Font License 1.1:
+- DM Sans, IBM Plex Mono, Inter, Source Serif Pro
+- Cardo, Instrument Sans, Jost
+- Manrope, Fira Code, Vollkorn, Literata, Platypi, and more
+
+Images are public domain (CC0) from Rawpixel and other sources.
+
+## 💖 Support WordPress
+
+WordPress has no corporate sponsors but thrives on community support:
+
+- **Share** - Tell friends about WordPress
+- **Contribute** - Join the development community
+- **Donate** - Support WordPress development at [wordpress.org/donate](https://wordpress.org/donate/)
+- **Link** - Add a link to wordpress.org on your site
+
+---
+
+**Made with ❤️ by the WordPress Community**
+
+*WordPress is the official continuation of b2/cafelog by Michel V.*
