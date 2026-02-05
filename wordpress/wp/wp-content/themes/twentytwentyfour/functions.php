@@ -204,3 +204,23 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+add_action('wp_enqueue_scripts', function() {
+    
+    // 1. O CSS (Estilo)
+    wp_enqueue_style(
+        'card-slider-css', // Handle (ID único)
+        get_template_directory_uri() . '/assets/css/card-slider.css', // Caminho
+        array(), // Dependências (geralmente vazio para CSS custom)
+        '1.0.0' // Versão (mude isso se editar o CSS e não atualizar na tela)
+    );
+
+    // 2. O JS (Lógica)
+    wp_enqueue_script(
+        'card-slider-js', 
+        get_template_directory_uri() . '/assets/js/card-slider.js', 
+        array(), // Sem dependências externas agora
+        '1.0.0', 
+        true // Carregar no footer
+    );
+});
