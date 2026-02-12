@@ -14,11 +14,12 @@
     display: grid !important;
     grid-template-columns: 1fr;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     min-height: 500px;
     align-items: center;
     padding: 0;
-    perspective: 1200px; /* Aumentei a perspectiva para suavizar o 3D */
+    perspective: 1500px;
+    transform-style: preserve-3d;
 }
 
 /* --- 3. ESTADO BASE --- */
@@ -28,14 +29,14 @@
     height: 100%;
     position: relative;
     border-radius: 12px;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
     
-    /* ANIMAÇÃO MAIS SUAVE AQUI: 0.8s com curva personalizada */
-    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), 
-                opacity 0.8s ease;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
-    /* Padrão: Fundo */
     opacity: 0;
-    transform: scale(0.95); /* Escala menos agressiva */
+    transform: translateZ(-100px) scale(0.9);
     z-index: 0;
     pointer-events: none;
 }
@@ -46,8 +47,7 @@
     object-fit: cover;
     border-radius: 12px;
     display: block;
-    /* Sombra suave apenas na imagem, controlada por nós */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1); 
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
 
 /* --- 4. ESTADOS DE ANIMAÇÃO --- */
@@ -56,16 +56,37 @@
 .wp-block-gallery.is-carousel .wp-block-image.is-active {
     opacity: 1;
     z-index: 10;
-    transform: scale(1) translateX(0);
+    transform: translateZ(0) scale(1) rotateY(0deg);
     pointer-events: auto;
 }
 
-/* SAINDO (Avançar) */
+/* SAINDO (Card flip para a esquerda) */
 .wp-block-gallery.is-carousel .wp-block-image.is-exiting-left {
-    z-index: 15;
+    z-index: 5;
     opacity: 0;
-    /* Rotação reduzida para ser mais sutil */
-    transform: translateX(-110%) rotate(-3deg); 
+    transform: translateX(-120%) translateZ(-200px) rotateY(-25deg) scale(0.85);
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ENTRANDO (Card flip da direita) */
+.wp-block-gallery.is-carousel .wp-block-image.is-bumping {
+    animation: cardFlip 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes cardFlip {
+    0% {
+        transform: translateX(100%) translateZ(-150px) rotateY(25deg) scale(0.85);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(0) translateZ(30px) rotateY(3deg) scale(1.01);
+        opacity: 1;
+    }
+    100% {
+        transform: translateZ(0) rotateY(0deg) scale(1);
+        opacity: 1;
+    }
 }
 
 /* ENTRANDO (Voltar) */

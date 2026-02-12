@@ -204,23 +204,108 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
-
+/**
+ * Enfileira assets customizados (Carrossel e Waves)
+ */
 add_action('wp_enqueue_scripts', function() {
     
-    // 1. O CSS (Estilo)
+    // --- 1. CARROSSEL (Geral) ---
+    // Mantemos o CSS do carrossel carregando globalmente para evitar quebras
     wp_enqueue_style(
-        'card-slider-css', // Handle (ID único)
-        get_template_directory_uri() . '/assets/css/card-slider.css', // Caminho
-        array(), // Dependências (geralmente vazio para CSS custom)
-        '1.0.0' // Versão (mude isso se editar o CSS e não atualizar na tela)
+        'card-slider-css',
+        get_template_directory_uri() . '/assets/css/card-slider.css',
+        array(),
+        '1.1.0'
     );
 
-    // 2. O JS (Lógica)
-    wp_enqueue_script(
-        'card-slider-js', 
-        get_template_directory_uri() . '/assets/js/card-slider.js', 
-        array(), // Sem dependências externas agora
-        '1.0.0', 
-        true // Carregar no footer
+    // Carrega o JS do carrossel (que agora está no build/index.js)
+    $carousel_asset_path = get_template_directory() . '/build/index.asset.php';
+    if ( file_exists( $carousel_asset_path ) ) {
+        $assets = include $carousel_asset_path;
+        wp_enqueue_script(
+            'card-slider-js',
+            get_template_directory_uri() . '/build/index.js',
+            $assets['dependencies'],
+            $assets['version'],
+            true
+        );
+    }
+
+    // --- 2. WAVES BACKGROUND (Apenas na Home) ---
+    if ( is_front_page() ) {
+        $waves_asset_path = get_template_directory() . '/build/waves-init.asset.php';
+        
+        if ( file_exists( $waves_asset_path ) ) {
+            $assets = include $waves_asset_path;
+            wp_enqueue_script(
+                'waves-background-js',
+                get_template_directory_uri() . '/build/waves-init.js',
+                $assets['dependencies'],
+                $assets['version'],
+                true
+            );
+        }
+    }
+});
+
+/**
+ * Injeta o container do Waves logo após a abertura do body
+ */
+add_action('wp_body_open', function() {
+    if ( is_front_page() ) {
+        // pointer-events: none garante que as ondas não bloqueiem cliques no menu/botões
+        echo '<div id="waves-root" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none;"></div>';
+    }
+});/**
+ * Enfileira assets customizados (Carrossel e Waves)
+ */
+add_action('wp_enqueue_scripts', function() {
+    
+    // --- 1. CARROSSEL (Geral) ---
+    // Mantemos o CSS do carrossel carregando globalmente para evitar quebras
+    wp_enqueue_style(
+        'card-slider-css',
+        get_template_directory_uri() . '/assets/css/card-slider.css',
+        array(),
+        '1.1.0'
     );
+
+    // Carrega o JS do carrossel (que agora está no build/index.js)
+    $carousel_asset_path = get_template_directory() . '/build/index.asset.php';
+    if ( file_exists( $carousel_asset_path ) ) {
+        $assets = include $carousel_asset_path;
+        wp_enqueue_script(
+            'card-slider-js',
+            get_template_directory_uri() . '/build/index.js',
+            $assets['dependencies'],
+            $assets['version'],
+            true
+        );
+    }
+
+    // --- 2. WAVES BACKGROUND (Apenas na Home) ---
+    if ( is_front_page() ) {
+        $waves_asset_path = get_template_directory() . '/build/waves-init.asset.php';
+        
+        if ( file_exists( $waves_asset_path ) ) {
+            $assets = include $waves_asset_path;
+            wp_enqueue_script(
+                'waves-background-js',
+                get_template_directory_uri() . '/build/waves-init.js',
+                $assets['dependencies'],
+                $assets['version'],
+                true
+            );
+        }
+    }
+});
+
+/**
+ * Injeta o container do Waves logo após a abertura do body
+ */
+add_action('wp_body_open', function() {
+    if ( is_front_page() ) {
+        // pointer-events: none garante que as ondas não bloqueiem cliques no menu/botões
+        echo '<div id="waves-root" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none;"></div>';
+    }
 });

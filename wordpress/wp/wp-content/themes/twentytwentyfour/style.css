@@ -15,3 +15,13 @@ Tags: one-column, custom-colors, custom-menu, custom-logo, editor-style, feature
 */
 /* Container principal */
 
+/* Garante que o fundo do site seja transparente na home para ver as ondas */
+.home .site {
+    background-color: transparent !important;
+}
+
+/* Garante que o conteúdo principal tenha posição para respeitar o z-index */
+.home .wp-site-blocks {
+    position: relative;
+    z-index: 1;
+}
